@@ -1,21 +1,11 @@
 import "./App.css";
 import React from "react";
-import { useState } from "react";
-
-const useInput = (initialValue) => {
-  const [value, setValue] = useState(initialValue);
-  const onChange = (e) => {
-    const {
-      target: { value },
-    } = e;
-    setValue(value);
-  };
-  return { value, onChange }; // return {value: value}
-};
+import { useInput } from "./useInput";
 
 const App = () => {
-  const name = useInput("Mr.");
-  const email = useInput("@");
+  const maxLen = (value) => value.length < 10;
+  const name = useInput("Mr.", maxLen);
+
   return (
     <div>
       hello
@@ -24,7 +14,6 @@ const App = () => {
         {...name}
         //  value={name.value} onChange={name.onChange}
       />
-      <input placeholder="Name" {...email} />
     </div>
   );
 };
