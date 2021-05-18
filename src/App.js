@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React from "react";
+import { useState } from "react";
 
-function App() {
+const useInput = (initialValue) => {
+  const [value, setValue] = useState(initialValue);
+  const onChange = (e) => {
+    const {
+      target: { value },
+    } = e;
+    setValue(value);
+  };
+  return { value, onChange }; // return {value: value}
+};
+
+const App = () => {
+  const name = useInput("Mr.");
+  const email = useInput("@");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      hello
+      <input
+        placeholder="Name"
+        {...name}
+        //  value={name.value} onChange={name.onChange}
+      />
+      <input placeholder="Name" {...email} />
     </div>
   );
-}
+};
 
 export default App;
