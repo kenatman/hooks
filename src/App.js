@@ -5,18 +5,14 @@ import { useTabs } from "./useTabs";
 import { useTitle } from "./useTitle";
 import { useClick } from "./useClick";
 import { useConfirm } from "./useConfirm";
+import { usePreventLeave } from "./usePreventLeave";
 
 const App = () => {
-  const deleteWorld = () => {
-    console.log("Delete The World");
-  };
-  const aborted = () => {
-    console.log("Aborted");
-  };
-  const confirmDelete = useConfirm("are you sure", deleteWorld, aborted);
+  const { enablePrevent, disablePrevent } = usePreventLeave();
   return (
     <div>
-      <button onClick={confirmDelete}>Delete the world</button>
+      <button onClick={enablePrevent}>PREVENT</button>
+      <button onClick={disablePrevent}>UNPREVENT</button>
     </div>
   );
 };
