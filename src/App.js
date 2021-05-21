@@ -1,15 +1,16 @@
 import "./App.css";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useInput } from "./useInput";
 import { useTabs } from "./useTabs";
 import { useTitle } from "./useTitle";
 
 const App = () => {
-  const titleUpdater = useTitle(`Loading...`);
-  setTimeout(() => titleUpdater(`Home`), 2000);
+  const potato = useRef();
+  setTimeout(() => potato?.current?.focus(), 2000);
   return (
     <div>
       <span>Hi</span>
+      <input ref={potato} placeholder="Write sth..." />
     </div>
   );
 };
