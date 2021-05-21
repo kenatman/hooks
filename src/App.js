@@ -1,27 +1,32 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useInput } from "./useInput";
 import { useTabs } from "./useTabs";
 
-const contents = [
-  { tab: "section1", content: "Hello,I am section1." },
-  { tab: "section2", content: "Hi,I am section2." },
-];
-
 const App = () => {
-  const { currentItem, changeItem } = useTabs(0, contents);
+  const sayHello = () => {
+    console.log(`hello`);
+  };
+  const [number, setNumber] = useState(0);
+  const [aNumber, setAnumber] = useState(0);
+  useEffect(sayHello, [number]);
   return (
     <div>
-      {contents.map((content, index) => (
-        <button
-          onClick={() => {
-            changeItem(index);
-          }}
-        >
-          {content.tab}
-        </button>
-      ))}
-      <div>{currentItem.content}</div>
+      <span>Hi</span>
+      <button
+        onClick={() => {
+          setNumber(number + 1);
+        }}
+      >
+        {number}
+      </button>
+      <button
+        onClick={() => {
+          setAnumber(aNumber + 1);
+        }}
+      >
+        {aNumber}
+      </button>
     </div>
   );
 };
