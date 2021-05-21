@@ -4,15 +4,19 @@ import { useInput } from "./useInput";
 import { useTabs } from "./useTabs";
 import { useTitle } from "./useTitle";
 import { useClick } from "./useClick";
+import { useConfirm } from "./useConfirm";
 
 const App = () => {
-  const sayHello = () => {
-    console.log(`hello`);
+  const deleteWorld = () => {
+    console.log("Delete The World");
   };
-  const title = useClick(sayHello);
+  const aborted = () => {
+    console.log("Aborted");
+  };
+  const confirmDelete = useConfirm("are you sure", deleteWorld, aborted);
   return (
     <div>
-      <h1 ref={title}>Hi</h1>
+      <button onClick={confirmDelete}>Delete the world</button>
     </div>
   );
 };
