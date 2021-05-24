@@ -6,13 +6,15 @@ import { useTitle } from "./useTitle";
 import { useClick } from "./useClick";
 import { useConfirm } from "./useConfirm";
 import { usePreventLeave } from "./usePreventLeave";
+import { useBeforeLeave } from "./useBeforeLeave";
 
 const App = () => {
-  const { enablePrevent, disablePrevent } = usePreventLeave();
+  const begForLife = () =>
+    console.log(`Dont leave!! you can get discount coupon!!`);
+  useBeforeLeave(begForLife);
   return (
     <div>
-      <button onClick={enablePrevent}>PREVENT</button>
-      <button onClick={disablePrevent}>UNPREVENT</button>
+      <h1>hello</h1>
     </div>
   );
 };
