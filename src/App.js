@@ -11,14 +11,18 @@ import { useNetwork } from "./useNetwork";
 import { useScroll } from "./useScroll";
 import { useFullScreen } from "./useFullScreen";
 import { useNotification } from "./useNotification";
+import useAxios from "./useAxios";
 
 const App = () => {
-  const triggerNotif = useNotification(`Can I get Kimchi?`, {
-    body: `Kimchi is healthy!!`,
+  const { loading, error, data, refetch } = useAxios({
+    url: `https://yts-proxy.nomadcoders1.now.sh/list_movies.json?sort_by=rating`,
   });
+  console.log(loading, error, data);
   return (
-    <div style={{ height: "1000vh" }}>
-      <button onClick={triggerNotif}>Hello</button>
+    <div>
+      <h1>{data && data.status}</h1>
+      <h2>{loading && "Loading"}</h2>
+      <button onClick={refetch}>Refetch</button>
     </div>
   );
 };
